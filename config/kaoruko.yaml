@@ -1,0 +1,116 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║        KAORUKO  —  Default Configuration                 ║
+# ║  Edit this file to customize Kaoruko's behavior.        ║
+# ╚══════════════════════════════════════════════════════════╝
+
+kaoruko:
+  version: "1.0.0"
+
+  # ─── Assistant identity ──────────────────────────────────
+  assistant:
+    name: Kaoruko
+    language: en
+    multilingual: true
+    supported_languages: [en, ja, hi]
+
+  # ─── Voice pipeline ───────────────────────────────────────
+  voice:
+
+    wake_word:
+      enabled: true
+      phrases:
+        - "Hey Kaoruko"
+        - "Kaoruko"
+      sensitivity: 0.65          # 0.0 (fewer detections) – 1.0 (more)
+      cooldown_seconds: 1.5
+
+    stt:
+      engine: auto               # auto | whisper | google
+      model_size: base           # tiny | base | small | medium | large
+      language: null             # null = auto-detect
+      device: auto               # auto | cpu | cuda
+      compute_type: int8
+      beam_size: 5
+      vad_threshold: 0.50
+      min_speech_duration_ms: 250
+      max_silence_duration_ms: 800
+
+    tts:
+      engine: edge_tts           # edge_tts | coqui | elevenlabs
+      voice: ja-JP-NanamiNeural  # Edge TTS neural voice name
+      fallback_voice: en-US-AriaNeural
+      speaking_rate: "-5%"       # Slight slow-down for clarity
+      pitch: "+5Hz"
+      volume: "+0%"
+      acknowledgements:
+        - "Hai, wakarimashita~"
+        - "Of course~"
+        - "Right away~"
+        - "Consider it done~"
+      confirmations:
+        - "Shall I proceed?"
+        - "Are you sure about that?"
+        - "Please confirm~"
+      errors:
+        - "Gomen nasai, I encountered a problem~"
+        - "My apologies, something went wrong~"
+      greetings:
+        - "Ohayou gozaimasu~"
+        - "Good to hear from you~"
+        - "Welcome back~"
+
+    audio:
+      sample_rate: 16000
+      channels: 1
+      chunk_size: 512
+      dtype: float32
+      noise_suppression_strength: 0.75
+      noise_suppression_stationary: true
+
+  # ─── AI / Intelligence ─────────────────────────────────────
+  ai:
+    primary: claude              # claude | openai | ollama
+    model: claude-haiku-4-5-20251001
+    fallback: ollama
+    offline_model: llama3.2:3b
+    max_tokens: 1024
+    temperature: 0.3
+    timeout_seconds: 15.0
+    prefer_local_for_simple: true
+    max_daily_tokens: null       # null = unlimited
+
+  # ─── UI ────────────────────────────────────────────────────
+  ui:
+    theme: cyber_purple          # cyber_purple | midnight | sakura
+    default_mode: orb            # orb | dashboard | minimal | gaming
+    always_on_top: true
+    start_position: bottom_right # bottom_right | bottom_left | top_right | top_left | center
+    opacity: 0.95
+    frameless: true
+    show_in_taskbar: false
+    orb_size: 80
+    animation_fps: 60
+    font_family: "Segoe UI"
+
+  # ─── Security ──────────────────────────────────────────────
+  security:
+    confirm_destructive: true    # Ask before: delete, shutdown, restart
+    require_pin: false
+    pin_hash: null               # bcrypt hash of PIN if enabled
+    audio_indicator: true        # Show mic-active indicator
+    log_all_commands: true
+    auto_lock_minutes: null      # null = never
+
+  # ─── Privacy ───────────────────────────────────────────────
+  privacy:
+    save_transcripts: true
+    transcript_retention_days: 30
+    share_analytics: false
+    mask_sensitive_in_logs: true
+
+  # ─── Performance ───────────────────────────────────────────
+  performance:
+    max_cpu_percent: 15
+    gpu_acceleration: auto       # auto | cuda | cpu
+    cache_ai_responses: true
+    cache_ttl_seconds: 300

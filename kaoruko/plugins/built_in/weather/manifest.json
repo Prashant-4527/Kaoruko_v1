@@ -1,0 +1,10 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "Current weather via wttr.in (no API key needed)",
+  "author": "Kaoruko Team",
+  "intents": ["GET_WEATHER", "GET_FORECAST", "GET_TEMPERATURE"],
+  "requires": ["httpx"],
+  "entry_class": "Plugin",
+  "enabled": true
+}

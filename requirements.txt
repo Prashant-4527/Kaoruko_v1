@@ -1,0 +1,8 @@
+# Kaoruko runtime dependencies.
+# Generated from pyproject.toml — install via:
+#   pip install -e .[dev]
+#
+# For a quick local install without editable mode:
+#   pip install -r requirements.txt
+
+-e .

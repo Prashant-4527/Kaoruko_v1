@@ -1,0 +1,10 @@
+{
+  "name": "system_info",
+  "version": "1.0.0",
+  "description": "Reports battery, disk, RAM, CPU, and IP address",
+  "author": "Kaoruko Team",
+  "intents": ["GET_SYSTEM_INFO", "GET_BATTERY", "GET_DISK_SPACE", "GET_IP", "GET_CPU", "GET_RAM"],
+  "requires": ["psutil"],
+  "entry_class": "Plugin",
+  "enabled": true
+}
